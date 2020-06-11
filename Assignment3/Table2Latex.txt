@@ -1,0 +1,17 @@
+Table 2				
+		(1)	(2)	(3)
+VARIABLES	LABELS	Y	D	Y
+				
+D	D	0.0142		
+		(1.822)		
+Age	Age	0.0202	0.0142***	
+		(0.0397)	(0.00304)	
+D_res	D_res: Residual from second equation			0.0142
+				(1.762)
+Constant	Constant	6.355**	-0.403***	7.455***
+		(2.389)	(0.121)	(0.702)
+				
+Observations		11	11	11
+R-squared		0.064	0.591	0.000
+Robust standard errors in parentheses				
+*** p<0.01, ** p<0.05, * p<0.1				

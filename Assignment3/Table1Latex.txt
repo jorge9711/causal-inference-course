@@ -1,0 +1,16 @@
+Table 1		
+	(1)	(2)
+	Part (a)	Part (b)
+VARIABLES	Y	Y
+		
+D	0.857	0.0142
+	(1.374)	(1.822)
+Age		0.0202
+		(0.0397)
+Constant	7.143***	6.355**
+	(0.905)	(2.389)
+		
+Observations	11	11
+R-squared	0.038	0.064
+Robust standard errors in parentheses		
+*** p<0.01, ** p<0.05, * p<0.1		
