@@ -1,0 +1,120 @@
+%\documentclass{article}
+\documentclass[a4paper,12pt]{article}
+\usepackage{graphicx}
+\setlength{\textwidth}{175mm}
+\setlength{\textheight}{250mm}
+\setlength{\oddsidemargin}{-8mm}
+\setlength{\evensidemargin}{20mm}
+\setlength{\topmargin}{-10mm}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage{pb-diagram,fp,graphicx} %Para las flechas
+\usepackage{MnSymbol} %Para las flechas
+\usepackage{setspace}
+\usepackage[document]{ragged2e}
+\title{Assignment 4}
+\author{Jorge Daniel Guevara Acevedo}
+\date{Sunday, June 14$^{th}$, 2020}
+
+\begin{document}
+\maketitle
+\justify
+\section{Github repo and summary (worth 2 points)}
+\begin{enumerate}
+\item Download Hansen_dwi.dta from github at the following address. 
+
+use https://github.com/scunning1975/causal-inference-class/raw/master/hansen_dwi, clear
+
+Create a new github repo named “RDD”.  Inside the RDD directory, put all the subdirectories we’ve discussed in class. Post the link to the repo so I can see it’s done as discussed in your assignment.
+\\
+\item In the writing subdirectory, place your assignment.  For the first part of this assignment, read Hansen’s paper in the /articles directory of the main class github entitled “Hansen AER”.  Briefly summarize this paper.  What is his research question? What data does he use?  What is his research design, or “identification strategy”?  What are his conclusions?\\
+
+\section{Replication (worth 6 points)}
+
+
+    \item {In the United States, an officer can arrest a driver if after giving them a blood alcohol content (BAC) test they learn the driver had a BAC of 0.08 or higher.  We will only focus on the 0.08 BAC cutoff. We will be ignoring the 0.15 cutoff for all this analysis. Create a dummy equaling 1 if bac1$>=$ 0.08 and 0 otherwise in your do file or R file.}\\
+    
+Code used:\\
+$gen DUI=(bac1>=0.08)$\\
+    
+    \item The first thing to do in any RDD is look at the raw data and see if there’s any evidence for manipulation (“sorting on the running variable”).  If people were capable of manipulating their blood alcohol content (bac1), describe the test we would use to check for this.  Now evaluate whether you see this in these data?  Either recreate Figure 1 using the bac1 variable as your measure of blood alcohol content or use your own density test from software.  Do you find evidence for sorting on the running variable?\\
+    
+          \begin{center}
+            \includegraphics[scale=0.6]{Grafico1.png}\\
+            \footnotesize{Figure 1. Punishment and Deterrence: Evidence from drunk driving. Benjamin Hansen.}
+                      
+      \end{center}
+\\
+\item The second thing we need to do is check for covariate balance.  Recreate Table 2 Panel A but only white male, age and accident (acc) as dependent variables.  Use your equation 1) for this. Are the covariates balanced at the cutoff?  It’s okay if they are not exactly the same as Hansen’s.\\&\\
+
+
+
+\setlength{\pdfpagewidth}{8.5in} \setlength{\pdfpageheight}{11in}
+\begin{tabular}{lcccc}
+\multicolumn{5}{c}{Regression Discontinuity Estimates for the Effect
+of Exceeding BAC Thresholds} \\ \hline \hline
+ & Driver &  & &\\
+ &  & & &\\
+Characteristics & Male & White & Age & Accident &\\ \hline
+ &  & & &\\
+Panel A. DUI threshold & -0.0183815  & 0.0044543 &  -6.224398 &  -0.1544195\\
+ & (0.0197867) & (0.0175152) & (0.5861375) & (0.0152688) \\&\\
+Mean &  & & & \\
+Controls & No & No & No & No\\
+Observations & 89,967 & 89,967 & 89,967 & 89,967\\
+ \hline
+ 
+    \multicolumn{2}{c}{ Robust standard errors in parentheses} \\
+\multicolumn{2}{c}{ *** p$<$0.01, ** p$<$0.05, * p$<$0.1}
+\end{tabular}
+
+
+
+
+\item Recreate Figure 2 panel A-D. You can use the -cmogram- command in Stata to do this.  Fit both linear and quadratic with confidence intervals. Discuss what you find and compare it with Hansen’s paper.\\&\\
+
+\includegraphics[scale=0.35]{PanelA_q.png}
+            \footnotesize{}
+\includegraphics[scale=0.35]{PanelA_l.png}
+            \footnotesize{}\\
+
+\includegraphics[scale=0.35]{PanelB_q.png}
+            \footnotesize{}
+\includegraphics[scale=0.35]{PanelB_l.png}\\
+
+\includegraphics[scale=0.35]{PanelC_q.png}
+            \footnotesize{}
+\includegraphics[scale=0.35]{PanelC_l.png}\\
+
+\includegraphics[scale=0.35]{PanelD_q.png}
+            \footnotesize{}
+\includegraphics[scale=0.35]{PanelD_l.png}
+
+\item Estimate equation (1) with recidivism (recid) as the outcome.  This corresponds to Table 3 column 1, but since I am missing some of his variables, your sample size will be the entire dataset of 214,558.  Nevertheless, replicate Table 3, column 1, Panels A and B.  Note that these are local linear regressions and Panel A uses as its bandwidth 0.03 to 0.13.  But Panel B has a narrower bandwidth of 0.055 to 0.105.  Your table should have three columns and two A and B panels associated with the different bandwidths.:
+
+\begin{enumerate}
+    \item Column 1: control for the bac1 linearly
+    \item Column 2: interact bac1 with cutoff linearly
+    \item	Column 3: interact bac1 with cutoff linearly and as a quadratic
+    \item	For all analysis, use heteroskedastic robust standard errors.\\&\\
+
+\end{enumerate}\\
+
+
+
+\item Recreate the top panel of Figure 3 according to the following rule:
+
+\begin{enumerate}
+    \item Fit linear fit using only observations with less than 0.15 bac on the bac1.
+    \item Fit quadratic fit using only observations with less than 0.15 bac on the bac1
+    
+\end{enumerate}
+\end{enumerate}
+
+\includegraphics[scale=0.35]{PanelA_L_P8.png}
+            \footnotesize{}
+\includegraphics[scale=0.35]{PanelA_q_P8.png}
+
+
+\end{document}
